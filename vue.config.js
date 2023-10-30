@@ -39,14 +39,12 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         target: 'http://13.229.118.41:32000/mallmember',
-        changeOrigin: true,  //配置跨域
+        changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       }
     }
-
-
     // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
