@@ -7,14 +7,14 @@ export function login(data) {
     data
   })
 }
-//
-// export function getInfo(token) {
-//   return request({
-//     url: '/mallmember/user/info',
-//     method: 'get',
-//     params: { token }
-//   })
-// }
+
+export function getInfo(name) {
+  return request({
+    url: '/mallmember/member/findMemberByName',
+    method: 'get',
+    params: { name }
+  })
+}
 
 export function logout() {
   return request({

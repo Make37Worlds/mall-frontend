@@ -1,6 +1,4 @@
 import router from './router'
-import store from './store'
-import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
@@ -26,20 +24,10 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      // determine whether the user has obtained his permission roles through getInfo
-      const hasRoles = store.getters.roles
-      if (hasRoles) {
-        next()
-      } else {
-        await store.dispatch('user/resetToken')
-        Message.error('Has Error')
-        next(`/login?redirect=${to.path}`)
-        NProgress.done()
-      }
+      next()
     }
   } else {
     /* has no token*/
-
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()
