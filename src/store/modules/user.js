@@ -7,7 +7,7 @@ const state = {
   name: '',
   avatar: '',
   introduction: '',
-  roles: []
+  roles: ['admin']
 }
 
 const mutations = {
@@ -68,6 +68,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
         commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
         commit('SET_ROLES', [])
         removeToken()
         resetRouter()

@@ -7,7 +7,7 @@
 <script>
 import adminDashboard from './admin'
 import editorDashboard from './editor'
-
+// 只有admin dashboard
 export default {
   name: 'Dashboard',
   components: { adminDashboard, editorDashboard },

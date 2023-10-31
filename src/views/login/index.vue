@@ -217,6 +217,7 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   .el-input {
     display: inline-block;
     height: 47px;
