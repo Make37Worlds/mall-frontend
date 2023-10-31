@@ -75,6 +75,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { Message } from 'element-ui'
 
 export default {
   name: 'Login',
@@ -156,6 +157,7 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
+              Message.success('login Successful!')
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
             })
