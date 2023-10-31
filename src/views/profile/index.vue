@@ -34,6 +34,7 @@ import UserCard from './components/UserCard'
 import Activity from './components/Activity'
 import Timeline from './components/Timeline'
 import Account from './components/Account'
+import { getInfo } from '@/api/user'
 
 export default {
   name: 'Profile',
@@ -41,7 +42,13 @@ export default {
   data() {
     return {
       user: {},
-      activeTab: 'activity'
+      activeTab: 'activity',
+      userInfo: {
+        nickname: '',
+        level: '',
+        mobile: '',
+        email: ''
+      }
     }
   },
   computed: {
@@ -53,6 +60,7 @@ export default {
   },
   created() {
     this.getUser()
+    this.getInfo()
   },
   methods: {
     getUser() {
@@ -62,6 +70,16 @@ export default {
         email: 'admin@test.com',
         avatar: this.avatar
       }
+    },
+    getInfo() {
+      return new Promise((resolve, reject) => {
+        getInfo(this.user).then(response => {
+          console.log(response)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   }
 }
