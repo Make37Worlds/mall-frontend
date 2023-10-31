@@ -72,10 +72,6 @@ const actions = {
         commit('SET_ROLES', [])
         removeToken()
         resetRouter()
-
-        // reset visited views and cached views
-        dispatch('tagsView/delAllViews', null, { root: true })
-
         resolve()
       }).catch(error => {
         reject(error)
