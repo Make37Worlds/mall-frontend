@@ -58,6 +58,7 @@
 
 <script>
 import { registerMember } from '@/api/register'
+import { Message } from 'element-ui'
 export default {
   name: 'Register',
   data() {
@@ -86,13 +87,15 @@ export default {
   },
   methods: {
     handleRegister() {
-      this.$router.push('/login')
-
       registerMember(this.registerForm).then((res) => {
         // console.log('注册成功1', res.data)
         this.registerStatus = 'Registration successful' // 设置成功消息
         this.registerStatusType = 'success' // 设置成功消息类型
         // // 跳转到登录页面
+        Message.success('注册成功')
+        setTimeout(() => {
+          Message.closeAll() // 关闭所有消息提示
+        }, 2000)
         this.$router.push('/login')
       })
         .catch((error) => {
