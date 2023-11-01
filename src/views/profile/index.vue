@@ -10,11 +10,8 @@
         <el-col :span="18" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
-              <el-tab-pane label="Activity" name="activity">
-                <activity />
-              </el-tab-pane>
-              <el-tab-pane label="Timeline" name="timeline">
-                <timeline />
+              <el-tab-pane label="Personal Info" name="personal-info">
+                <personal-info :user-info="userInfo" />
               </el-tab-pane>
               <el-tab-pane label="Account" name="account">
                 <account :user="user" />
@@ -31,18 +28,17 @@
 <script>
 import { mapGetters } from 'vuex'
 import UserCard from './components/UserCard'
-import Activity from './components/Activity'
-import Timeline from './components/Timeline'
 import Account from './components/Account'
+import PersonalInfo from './components/PersonalInfo'
 import { getInfo } from '@/api/user'
 
 export default {
   name: 'Profile',
-  components: { UserCard, Activity, Timeline, Account },
+  components: { UserCard, Account, PersonalInfo },
   data() {
     return {
       user: {},
-      activeTab: 'activity',
+      activeTab: 'personal-info',
       userInfo: {
         nickname: '',
         level: '',
@@ -67,14 +63,19 @@ export default {
       this.user = {
         name: this.name,
         role: this.roles.join(' | '),
-        email: 'admin@test.com',
+        email: '',
         avatar: this.avatar
       }
     },
     getInfo() {
       return new Promise((resolve, reject) => {
-        getInfo(this.user).then(response => {
+        getInfo(this.name).then(response => {
           console.log(response)
+          response.data
+          this.userInfo.nickname = response.data.nickname
+          this.userInfo.level = response.data.level
+          this.userInfo.mobile = response.data.mobile
+          this.userInfo.email = response.data.email
           resolve()
         }).catch(error => {
           reject(error)
