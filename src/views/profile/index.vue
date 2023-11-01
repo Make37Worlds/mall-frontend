@@ -69,7 +69,7 @@ export default {
     },
     getInfo() {
       return new Promise((resolve, reject) => {
-        getInfo(this.user).then(response => {
+        getInfo(this.name).then(response => {
           console.log(response)
           response.data
           this.userInfo.nickname = response.data.nickname
