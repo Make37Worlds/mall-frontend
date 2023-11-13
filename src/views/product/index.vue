@@ -23,6 +23,8 @@ export default {
   },
   methods: {
     fetchProducts() {
+      const token = this.$store.getters.token;
+      console.log("获取token1：",token)
       // getProductList().then(res => {
       //     // this.products = res.data;
       //     console.log('产品数据：',res,res.data)
@@ -31,18 +33,7 @@ export default {
       //     console.error(error);
       //   });
     // }
-
-      //     fetchProducts() {
-      //   return new Promise((resolve, reject) => {
-      //     getProductList().then(response => {
-      //       const { data } = response
-      //       console.log("获取产品数据：",data)
-      //       resolve()
-      //     }).catch(error => {
-      //       reject(error)
-      //     })
-      //   })
-      // },
+    
 
       // 使用示例数据来模拟获取的产品数据
       this.products = [
