@@ -110,7 +110,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/product/index'),
         name: 'Product',
-        meta: { title: 'Product', icon: 'user', noCache: true }
+        meta: { title: 'Product', icon: 'component', noCache: true }
       }
     ]
   },
@@ -125,6 +125,19 @@ export const constantRoutes = [
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/order',
+    component: Layout,
+    redirect: '/order/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/order/index'),
+        name: 'order',
+        meta: { title: 'Order', icon: 'shopping', noCache: true }
       }
     ]
   }
@@ -176,7 +189,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   tableRouter,
 
   {
