@@ -6,9 +6,10 @@ export function getProductList() {
   })
 }
 
-export function addProduct() {
+export function addProduct(data) {
   return request({
     url: '/mallproduct/spuInfo/add',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
