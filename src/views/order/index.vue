@@ -101,7 +101,7 @@ export default {
         buyProduct({ productId: this.newProductForm.productId, quantity: this.newProductForm.quantity }).then(response => {
           console.log(response)
           if (response.code === 50004) {
-            throw new Error(response.data)
+            console.error(response.data)
           } else {
             this.resetBuyProductForm()
             this.buyProductDialogVisible = false
