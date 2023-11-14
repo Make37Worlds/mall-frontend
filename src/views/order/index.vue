@@ -99,6 +99,7 @@ export default {
       // 在这里将新产品数据发送到后端/API
       return new Promise((resolve, reject) => {
         buyProduct({ productId: this.newProductForm.productId, quantity: this.newProductForm.quantity }).then(response => {
+          console.log(response)
           if (response.code === 50004) {
             throw new Error(response.data)
           } else {
