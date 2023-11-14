@@ -37,13 +37,15 @@
 
     <!-- 弹出的订单信息对话框 -->
     <el-dialog
-      title="Order Details"
+      title="Buy Product Success!Order Details"
       :visible.sync="orderDialogVisible"
       width="50%"
     >
+      <p><strong>Order Details</strong></p>
       <div v-if="Object.keys(orderDetails).length > 0">
-        <p><strong>Order ID:</strong> {{ orderDetails.id }}</p>
-        <p><strong>Order Date:</strong> {{ orderDetails.createTime }}</p>
+        <p><strong>Member Username:</strong> {{ orderDetails.memberUsername }}</p>
+        <p><strong>Order Time:</strong> {{ orderDetails.createTime }}</p>
+        <p><strong>Receiver City:</strong> {{ orderDetails.receiverCity }}</p>
       </div>
       <template v-else>
         <p>No order details available.</p>
@@ -99,7 +101,6 @@ export default {
       // 在这里将新产品数据发送到后端/API
       return new Promise((resolve, reject) => {
         buyProduct({ productId: this.newProductForm.productId, quantity: this.newProductForm.quantity }).then(response => {
-          console.log(response)
           this.resetBuyProductForm()
           this.buyProductDialogVisible = false
           this.showOrderDialog(response.data)
@@ -110,6 +111,7 @@ export default {
       })
     },
     showOrderDialog(order) {
+      console.log(order)
       this.orderDetails = order
       this.orderDialogVisible = true
     },
