@@ -44,7 +44,7 @@ import { buyProduct } from '@/api/order'
 export default {
   data() {
     return {
-      products: [/* 你的产品数据 */],
+      products: [],
       newProductForm: {
         id: '',
         quantity: null
@@ -90,10 +90,8 @@ export default {
     resetBuyProductForm() {
       // 重置新产品表单
       this.newProductForm = {
-        name: '',
-        description: '',
-        price: null,
-        stock: null
+        id: '',
+        quantity: null
       }
     }
   }
