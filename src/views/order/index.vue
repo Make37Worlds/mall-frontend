@@ -95,8 +95,6 @@ export default {
       this.buyProductDialogVisible = true
     },
     buyProduct() {
-      console.log('token:', this.$store.getters.token)
-      console.log('token:', this.newProductForm)
       // 向产品数组中添加新产品
       // 在这里将新产品数据发送到后端/API
       return new Promise((resolve, reject) => {
@@ -106,7 +104,7 @@ export default {
           this.showOrderDialog(response.data)
           resolve()
         }).catch(error => {
-          console.error('Buy product failed:', error)
+          reject(error)
         })
       })
     },
