@@ -21,10 +21,10 @@
     >
       <el-form :model="newProductForm" label-width="80px">
         <el-form-item label="ID" prop="id">
-          <el-input v-model="newProductForm.name" />
+          <el-input v-model="newProductForm.id" />
         </el-form-item>
-        <el-form-item label="Quantity" prop="Quantity">
-          <el-input v-model="newProductForm.description" />
+        <el-form-item label="Quantity" prop="quantity">
+          <el-input v-model="newProductForm.quantity" />
         </el-form-item>
       </el-form>
 
@@ -39,16 +39,15 @@
 
 <script>
 import { getProductList } from '@/api/product'
+import { buyProduct } from '@/api/order'
 
 export default {
   data() {
     return {
       products: [/* 你的产品数据 */],
       newProductForm: {
-        name: '',
-        description: '',
-        price: null,
-        stock: null
+        id: '',
+        quantity: null
       },
       buyProductDialogVisible: false
     }
@@ -75,12 +74,18 @@ export default {
     buyProduct() {
       console.log('token:', this.$store.getters.token)
       // 向产品数组中添加新产品
-      this.products.push({ ...this.newProductForm })
-      // 可选：在这里将新产品数据发送到后端/API
-
-      // 添加产品后重置表单和关闭对话框
-      this.resetBuyProductForm()
-      this.buyProductDialogVisible = false
+      // 在这里将新产品数据发送到后端/API
+      const { id, quantity } = this.newProductForm
+      return new Promise((resolve, reject) => {
+        buyProduct({ id: id.trim(), quantity: quantity }).then(response => {
+          console.log(response)
+          this.resetBuyProductForm()
+          this.buyProductDialogVisible = false
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
     },
     resetBuyProductForm() {
       // 重置新产品表单
