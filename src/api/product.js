@@ -5,3 +5,10 @@ export function getProductList() {
     method: 'get'
   })
 }
+
+export function addProduct() {
+  return request({
+    url: '/mallproduct/spuInfo/add',
+    method: 'post'
+  })
+}

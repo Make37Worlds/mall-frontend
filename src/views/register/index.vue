@@ -76,7 +76,8 @@ export default {
       registerStatusType: '', // 注册状态的类型，可以是'success'或'error'
       registerForm: {
         username: '',
-        password: ''
+        password: '',
+        status: 0,
       },
       registerRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
