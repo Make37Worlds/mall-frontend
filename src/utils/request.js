@@ -46,20 +46,12 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 1) {
+    if (res.code !== 1 || res.code !== 50004) {
       Message({
         message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
-      // 库存不足
-      if (res.code === 50004) {
-        Message({
-          message: res.data || 'Stock not enough',
-          type: 'error',
-          duration: 5 * 1000
-        })
-      }
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         // to re-login
