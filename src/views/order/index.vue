@@ -37,11 +37,11 @@
 
     <!-- 弹出的订单信息对话框 -->
     <el-dialog
-      title="Buy Product Success!Order Details"
+      title="Buy Product Success!"
       :visible.sync="orderDialogVisible"
       width="50%"
     >
-      <p><strong>Order Details</strong></p>
+      <div><h3><p>Order Details=</p></h3></div>
       <div v-if="Object.keys(orderDetails).length > 0">
         <p><strong>Member Username:</strong> {{ orderDetails.memberUsername }}</p>
         <p><strong>Order Time:</strong> {{ orderDetails.createTime }}</p>
