@@ -106,7 +106,7 @@ export default {
           this.showOrderDialog(response.data)
           resolve()
         }).catch(error => {
-          reject(error)
+          console.error('Buy product failed:', error)
         })
       })
     },
