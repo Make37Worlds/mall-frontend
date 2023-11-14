@@ -13,3 +13,10 @@ export function addProduct(data) {
     data
   })
 }
+
+export function getProductByToken() {
+  return request({
+    url: '/mallproduct/spuInfo/user/products',
+    method: 'get'
+  })
+}
