@@ -12,7 +12,7 @@
       <el-table-column prop="weight" label="Price" />
     </el-table>
 
-    <!-- 弹出的添加新产品对话框 -->
+    <!-- 弹出的购买产品对话框 -->
     <el-dialog
       title="Buy Product"
       :visible.sync="buyProductDialogVisible"
@@ -34,6 +34,25 @@
         <el-button @click="buyProductDialogVisible = false">Cancel</el-button>
       </span>
     </el-dialog>
+
+    <!-- 弹出的订单信息对话框 -->
+    <el-dialog
+      title="Order Details"
+      :visible.sync="orderDialogVisible"
+      width="50%"
+    >
+      <div v-if="Object.keys(orderDetails).length > 0">
+        <p><strong>Order ID:</strong> {{ orderDetails.id }}</p>
+        <p><strong>Order Date:</strong> {{ orderDetails.createTime }}</p>
+      </div>
+      <template v-else>
+        <p>No order details available.</p>
+      </template>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="orderDialogVisible = false">Close</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -49,7 +68,9 @@ export default {
         productId: '',
         quantity: null
       },
-      buyProductDialogVisible: false
+      buyProductDialogVisible: false,
+      orderDialogVisible: false,
+      orderDetails: {}
     }
   },
   created() {
@@ -81,11 +102,16 @@ export default {
           console.log(response)
           this.resetBuyProductForm()
           this.buyProductDialogVisible = false
+          this.showOrderDialog(response.data)
           resolve()
         }).catch(error => {
           reject(error)
         })
       })
+    },
+    showOrderDialog(order) {
+      this.orderDetails = order
+      this.orderDialogVisible = true
     },
     resetBuyProductForm() {
       // 重置新产品表单
