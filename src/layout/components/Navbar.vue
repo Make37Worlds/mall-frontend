@@ -20,12 +20,15 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <svg-icon icon-class="user" class="user-avatar" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/profile/index">
+          <router-link to="/profile">
             <el-dropdown-item>Profile</el-dropdown-item>
+          </router-link>
+          <router-link to="/product/index">
+            <el-dropdown-item>Inventory</el-dropdown-item>
           </router-link>
           <router-link to="/">
             <el-dropdown-item>Dashboard</el-dropdown-item>
