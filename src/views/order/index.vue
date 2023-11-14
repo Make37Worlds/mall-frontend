@@ -41,7 +41,7 @@
       :visible.sync="orderDialogVisible"
       width="50%"
     >
-      <div><h3><p>Order Details=</p></h3></div>
+      <p><strong>Order Details</strong></p>
       <div v-if="Object.keys(orderDetails).length > 0">
         <p><strong>Member Username:</strong> {{ orderDetails.memberUsername }}</p>
         <p><strong>Order Time:</strong> {{ orderDetails.createTime }}</p>
